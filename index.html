@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puppy Bowl</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #roster, #player-details, #add-player {
+            margin-bottom: 20px;
+        }
+        .player {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        .player img {
+            max-width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the PUPPY BOWL</h1>
+
+    <!-- View the roster -->
+    <section id="roster">
+        <h2>Roster</h2>
+        <div id="roster-list">
+            <!-- Players will be dynamically inserted here -->
+        </div>
+    </section>
+
+    <!-- Observe a player's details -->
+    <section id="player-details">
+        <h2>Player Details</h2>
+        <div id="player-info">
+            <!-- Player details will be dynamically inserted here -->
+        </div>
+    </section>
+
+    <!-- Add players to the roster -->
+    <section id="add-player">
+        <h2>Add a New Player</h2>
+        <form id="add-player-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required><br>
+            <label for="breed">Breed:</label>
+            <input type="text" id="breed" name="breed" required><br>
+            <label for="photo">Photo URL:</label>
+            <input type="url" id="photo" name="photo" required><br>
+            <button type="submit">Add Player</button>
+        </form>
+
+        <form id="add-player-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required><br>
+            <label for="breed">Breed:</label>
+            <input type="text" id="breed" name="breed" required><br>
+            <label for="photo">Photo URL:</label>
+            <input type="url" id="photo" name="photo" required><br>
+            <button type="submit">Add Player</button>
+        </form>
+
+        <form id="add-player-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required><br>
+            <label for="breed">Breed:</label>
+            <input type="text" id="breed" name="breed" required><br>
+            <label for="photo">Photo URL:</label>
+            <input type="url" id="photo" name="photo" required><br>
+            <button type="submit">Add Player</button>
+        </form>
+
+        <form id="add-player-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required><br>
+            <label for="breed">Breed:</label>
+            <input type="text" id="breed" name="breed" required><br>
+            <label for="photo">Photo URL:</label>
+            <input type="url" id="photo" name="photo" required><br>
+            <button type="submit">Add Player</button>
+        </form>
+
+        <form id="add-player-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required><br>
+            <label for="breed">Breed:</label>
+            <input type="text" id="breed" name="breed" required><br>
+            <label for="photo">Photo URL:</label>
+            <input type="url" id="photo" name="photo" required><br>
+            <button type="submit">Add Player</button>
+        </form>
+
+        <form id="add-player-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required><br>
+            <label for="breed">Breed:</label>
+            <input type="text" id="breed" name="breed" required><br>
+            <label for="photo">Photo URL:</label>
+            <input type="url" id="photo" name="photo" required><br>
+            <button type="submit">Add Player</button>
+        </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </section>
+
+    <script>
+        
+        async function fetchRoster() {
+            const response = await fetch('API_ENDPOINT/roster');
+            const roster = await response.json();
+            const rosterList = document.getElementById('roster-list');
+            rosterList.innerHTML = '';
+            roster.forEach(player => {
+                const playerDiv = document.createElement('div');
+                playerDiv.className = 'player';
+                playerDiv.innerHTML = `
+                    <img src="${player.photo}" alt="${player.name}">
+                    <h3>${player.name}</h3>
+                    <button onclick="viewPlayerDetails(${player.id})">View Details</button>
+                `;
+                rosterList.appendChild(playerDiv);
+            });
+        }
+
+        // Function to view player details
+        async function viewPlayerDetails(playerId) {
+            const response = await fetch(`API_ENDPOINT/player/${playerId}`);
+            const player = await response.json();
+            const playerInfo = document.getElementById('player-info');
+            playerInfo.innerHTML = `
+                <img src="${player.photo}" alt="${player.name}">
+                <h3>${player.name}</h3>
+                <p>Age: ${player.age}</p>
+                <p>Breed: ${player.breed}</p>
+            `;
+        }
+
+        // Function to add a new player to the roster
+        document.getElementById('add-player-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const newPlayer = {
+                name: formData.get('name'),
+                age: formData.get('age'),
+                breed: formData.get('breed'),
+                photo: formData.get('photo')
+            };
+            await fetch('API_ENDPOINT/addPlayer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newPlayer)
+            });
+            fetchRoster();
+        });
+
+        
+        fetchRoster();
+    </script>
+</body>
+</html>
