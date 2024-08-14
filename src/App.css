@@ -1,0 +1,118 @@
+/* Global styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  
+  /* Container */
+  .container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  /* Navigation Bar */
+  .navbar {
+    background-color: #007bff;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .navbar h1 {
+    margin: 0;
+  }
+  
+  /* Player List */
+  .player-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+  
+  .player-list-item {
+    background: white;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .player-list-item button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .player-list-item button:hover {
+    background-color: #c82333;
+  }
+  
+  /* Search Bar */
+  .search-bar {
+    margin: 20px 0;
+  }
+  
+  .search-bar input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* New Player Form */
+  .new-player-form {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .new-player-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .new-player-form button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .new-player-form button:hover {
+    background-color: #218838;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 600px) {
+    .container {
+      width: 95%;
+    }
+  
+    .player-list-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .player-list-item button {
+      margin-top: 10px;
+      width: 100%;
+    }
+  }
+  
